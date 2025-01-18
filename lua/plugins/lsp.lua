@@ -27,7 +27,6 @@ return {
             -- Here is where you configure the autocompletion settings.
             local lsp_zero = require('lsp-zero')
             lsp_zero.extend_cmp()
-
             -- And you can configure cmp even more, if you want to.
             local cmp = require('cmp')
             local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -76,6 +75,24 @@ return {
                     debounce_text_changes = 150,
                 }
             }
+            require("lspconfig").dartls.setup({
+                cmd = { "dart", "language-server", "--protocol=lsp" },
+                filetypes = { "dart" },
+                init_options = {
+                    closingLabels = true,
+                    flutterOutline = true,
+                    onlyAnalyzeProjectsWithOpenFiles = true,
+                    outline = true,
+                    suggestFromUnimportedLibraries = true,
+                },
+                -- root_dir = root_pattern("pubspec.yaml"),
+                settings = {
+                    dart = {
+                        completeFunctionCalls = true,
+                        showTodos = true,
+                    },
+                },
+            })
 
             require('mason-lspconfig').setup({
                 ensure_installed = {},

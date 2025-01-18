@@ -4,8 +4,8 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-        flavour = "mocha",
-        term_colors = false,
+        flavour = "macchiato",
+        term_colors = true,
         transparent_background = true,
     },
     config = function(_, opts)
