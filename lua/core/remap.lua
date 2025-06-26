@@ -20,3 +20,8 @@ vim.keymap.set('n', '<leader>d', "\"_d")
 vim.keymap.set('v', '<leader>d', "\"_d")
 
 vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+vim.keymap.set('n', '<leader>k', function()
+    local new_config = not vim.diagnostic.config().virtual_lines
+    vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = 'Toggle diagnostic virtual_lines' })

@@ -75,6 +75,11 @@ return {
                     debounce_text_changes = 150,
                 }
             }
+            require('lspconfig').rust_analyzer.setup {
+                flags = {
+                    debounce_text_changes = 150,
+                }
+            }
             require("lspconfig").dartls.setup({
                 cmd = { "dart", "language-server", "--protocol=lsp" },
                 filetypes = { "dart" },
