@@ -98,6 +98,8 @@ return {
                     },
                 },
             })
+            require('java').setup();
+            require('lspconfig').jdtls.setup({});
 
             require('mason-lspconfig').setup({
                 ensure_installed = {},
