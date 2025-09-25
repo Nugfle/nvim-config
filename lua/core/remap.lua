@@ -25,3 +25,28 @@ vim.keymap.set('n', '<leader>k', function()
     local new_config = not vim.diagnostic.config().virtual_lines
     vim.diagnostic.config({ virtual_lines = new_config })
 end, { desc = 'Toggle diagnostic virtual_lines' })
+
+-- Function to jump to nth item in quickfix list
+local function jump_to_qf_item(n)
+    local qf_list = vim.fn.getqflist()
+
+    if #qf_list == 0 then
+        vim.notify("Quickfix list is empty", vim.log.levels.WARN)
+        return
+    end
+
+    if n < 1 or n > #qf_list then
+        vim.notify("Invalid quickfix item number: " .. n .. " (valid range: 1-" .. #qf_list .. ")", vim.log.levels.WARN)
+        return
+    end
+
+    -- Jump to the nth item (1-indexed)
+    vim.cmd("cc " .. n)
+end
+
+-- Keybindings for <leader>qn (where n is 0-9)
+for i = 1, 9 do
+    vim.keymap.set('n', '<leader>q' .. i, function()
+        jump_to_qf_item(i)
+    end, { desc = 'Jump to quickfix item ' .. i })
+end
